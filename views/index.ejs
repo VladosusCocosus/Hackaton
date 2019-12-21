@@ -31,19 +31,26 @@
 		        <a class="nav-link" href="#">Pricing</a>
 		      </li>
 
- -->
+ -->		<% if(!status){ %>
 	            <li class="nav-item">
 	                <a class="nav-link" href="#" data-toggle="modal" data-target="#authModal">Вход</a>
 	            </li>
 	            <li class="nav-item">
 	                <a class="nav-link" href="#" data-toggle="modal" data-target="#registModal">Регистрация</a>
-	            </li>
+				</li>
+			<% }else{ %>
+				<li class="nav-item">
+					<a href="/cab" class="nav-link"><%= name %></a>
+				</li>
+			<% } %>
  			  </ul>
 		  </div>
 
 		</nav>
 	</header>
 	<!-- Modal 1 -->
+
+	<div class="module">
 		<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModal" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -54,7 +61,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form>
+		        <form action="/auth" method="POST">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Почта</label>
 				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="anton@yandex.ru" name="email" required>
@@ -80,7 +87,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-			        <form>
+			        <form method="Post" action="/reg">
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">ФИО</label>
 					    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Иванов Иван Иванович" name="name" required>
@@ -108,9 +115,10 @@
 		    </div>
 		  </div>
 		</div>
+	</div>
 
 	<!-- Main images -->
-	<img src="../public/pet.jpg" style='height:95vh; width: 100%;' class="img-fluid">
+	<img src="../pet.jpg" style='height:95vh; width: 100%;' class="img-fluid">
 
 	<!-- Cards -->
 	<div class="card" style="width: 25vw; margin: 5px 25px;">
@@ -119,7 +127,7 @@
 	    <h5 class="card-title">Пропала кошка.</h5>
 	    <p class="card-text">Кличка: Vasya<br>Цвет: оранжевый<br> Цвет глаз: черный<br> IQ: 150+</p>
 	    <a href="#" class="btn btn-primary">Подробнее</a>
-  	</div>
+	  </div>
 
  	
 

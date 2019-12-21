@@ -1,3 +1,4 @@
+
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
@@ -44,18 +45,12 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
-app.use('/static', express.static('public'))
+app.use(express.static('public'));
 
 app.get('/', function(req, res){
     const{userName, status} = req.session
     res.render('index', {name:userName, status:status})
 });
-app.get('/auth', function(req,res){
-    res.render('auth_panel')
-})
-app.get('/reg', function(req,res){
-   res.render('reg_panel') 
-})
 
 const userScheme = new Schema({
     name: String,
@@ -89,12 +84,42 @@ app.post('/auth', (req,res, next) => {
                 req.session.userId = acc._id
                 req.session.userName = acc.name
                 req.session.userEmail = acc.email
+                req.session.tel = acc.tel
                 req.session.status = true
                 res.redirect('/')
                 }else{
-                    
+                    res.send('err')
                 }
             }
         })
 })
+
+
+
+app.get('/cab', function(req, res){
+    const{userName, status,tel, userEmail} = req.session
+    const{postName, comment} = req.body
+    res.render('cab', {name:userName, status:status, email:userEmail, tel:tel})
+});
+
+const postScheme = new Schema({
+    user: String,
+    title: String,
+    com: String
+})
+
+
+app.post('/cab', function(res,req){
+    const{postName, comment} = req.body
+    const{userId} = req.session
+    const Post = mongoose.model("Post", postScheme);
+    const post = new Post({
+        user:userId,
+        title:postName,
+        com:comment
+    });
+    post.save()
+    res.redirect('/')
+})
+
 app.listen(PORT)

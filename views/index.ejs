@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<title>Findpets.ru</title>
@@ -11,27 +11,32 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <!-- БЕЗ JUMBOTRONS -->
+<style>
+	.insert{
+		display: flex;
+		flex-direction: row;
+	}
+@media screen and (max-width: 600px){
+	.insert{
+		flex-direction: column;
+		margin-top: 80px;
+	}
+}
+</style>
 </head>
-<body>
+<body style=''>
 	<header class="page-header">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="#">FindPets</a>
+		  <a class="navbar-brand" href="#">FindPets.ru</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Объявления</a>
+				<a class="nav-link" href="/ads">Объявления</a>
 		      </li>
-<!-- 		      <li class="nav-item justify-content-between">
-		        <a class="nav-link"  href="#">Что-то<span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item justify-content-between">
-		        <a class="nav-link" href="#">Pricing</a>
-		      </li>
-
- -->		<% if(!status){ %>
+ 			<% if(!status){ %>
 	            <li class="nav-item">
 	                <a class="nav-link" href="#" data-toggle="modal" data-target="#authModal">Вход</a>
 	            </li>
@@ -39,9 +44,9 @@
 	                <a class="nav-link" href="#" data-toggle="modal" data-target="#registModal">Регистрация</a>
 				</li>
 			<% }else{ %>
-				<li class="nav-item">
-					<a href="/cab" class="nav-link"><%= name %></a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/cab"><%=name %></a>
+					</li>
 			<% } %>
  			  </ul>
 		  </div>
@@ -49,8 +54,6 @@
 		</nav>
 	</header>
 	<!-- Modal 1 -->
-
-	<div class="module">
 		<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModal" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -64,11 +67,11 @@
 		        <form action="/auth" method="POST">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Почта</label>
-				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="anton@yandex.ru" name="email" required>
+				    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="anton@yandex.ru" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">Пароль</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ваш пароль" name="password" required>
+				    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Ваш пароль" required>
 				  </div>
 				  <button type="submit" class="btn btn-primary">Войти</button>
 				</form>
@@ -87,27 +90,27 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-			        <form method="Post" action="/reg">
+			        <form action="/reg" method="POST">
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">ФИО</label>
-					    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Иванов Иван Иванович" name="name" required>
+					    <input type="name" name='name	' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Иванов Иван Иванович" required>
 					  </div>
 					  <div class="form-group">
 					    <label for="exampleInputPassword1">Почта</label>
-					    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="anton@yandex.ru" name="email" required>
+					    <input type="email" name="email" class="form-control" id="exampleInputPassword1" placeholder="anton@yandex.ru" required>
 					  </div>		  
 					  <div class="form-group">
 					    <label for="exampleInputPassword1">Телефон</label>
-					    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="+79999999999" name="tel" required>
+					    <input type="email" name="tel" class="form-control" id="exampleInputPassword1" placeholder="+79999999999" required>
 					  </div>
 
 					  <div class="form-group">
 					    <label for="exampleInputPassword1">Пароль</label>
-					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" name="password" required>
+					    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" required>
 					  </div>
 					  <div class="form-group">
 					    <label for="exampleInputPassword1">Пароль ещё раз</label>
-					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" name="passwordCheck" required>
+					    <input type="password" name="passwordCheck" class="form-control" id="exampleInputPassword1" placeholder="Пароль" required>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 					</form>
@@ -115,21 +118,29 @@
 		    </div>
 		  </div>
 		</div>
+	<!-- Белый прямоугольник -->
+	<div class='rectale' style='position: absolute; background-color: rgba(255,255,255, 0.7); width: 100%; height: 60%; margin: 5% 0;'>
+		<p style='margin: -5px 45%; font-size: 30px; position: absolute;'>Объявления</p>
+		<div class="insert">
+		<% post.forEach(elem => { %>
+			<%if(elem.purch == true){%>
+		<div class="card" style="margin-left: 30px; margin-right: 4%; margin-top: 3%;">
+		<div style="overflow: hidden;">
+			<img src="pet.jpg" class="card-img-top" style="width: 400px;">
+			<div class="card-body">
+				<h5 class="card-title"><%=elem.postName%></h5>
+				<p class="card-text"><%= elem.comment%></p>
+				<a href="#" class="btn btn-primary">Подробнее</a>
+			  </div>
+		
+			</div>
+		</div>
+		<%}%>
+		<% }) %>
 	</div>
+	</div>
+	<div class="cards_scroll" style='position:relative; width: 100%; height: 100vh; color: white; background-image: url(pet.jpg); z-index: -20; background-repeat: no-repeat;'></div>
 
-	<!-- Main images -->
-	<img src="../pet.jpg" style='height:95vh; width: 100%;' class="img-fluid">
-
-	<!-- Cards -->
-	<div class="card" style="width: 25vw; margin: 5px 25px;">
-  		<img class="card-img-top" src="images/pet.jpg" alt="Card image cap">
-	<div class="card-body">
-	    <h5 class="card-title">Пропала кошка.</h5>
-	    <p class="card-text">Кличка: Vasya<br>Цвет: оранжевый<br> Цвет глаз: черный<br> IQ: 150+</p>
-	    <a href="#" class="btn btn-primary">Подробнее</a>
-	  </div>
-
- 	
 
 </div>
 <script>

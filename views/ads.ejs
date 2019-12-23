@@ -34,7 +34,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="cards.html">Объявления</a>
+		        <a class="nav-link" href="#">Объявления</a>
 		      </li>
  			<% if(!status){ %>
 	            <li class="nav-item">
@@ -92,7 +92,7 @@
                   <form action="/reg" method="POST">
                     <div class="form-group">
                       <label for="exampleInputEmail1">ФИО</label>
-                      <input type="name" name='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Иванов Иван Иванович" required>
+                      <input type="name" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Иванов Иван Иванович" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Почта</label>
@@ -120,13 +120,14 @@
       <p style='margin: -5px 45%; font-size: 30px; position: absolute;'>Объявления</p>
 		<div class="insert">
         <% post.forEach(elem => { %>
-            
 		<div class="card" style="margin-left: 30px; margin-right: 4%; margin-top: 3%;">
 		<div style="overflow: hidden;">
 			<img src="pet.jpg" class="card-img-top" style="width: 400px;">
 			<div class="card-body">
 				<h5 class="card-title"><%=elem.postName%></h5>
-				<p class="card-text"><%= elem.comment%></p>
+        <p class="card-text"><%= elem.comment%></p>
+        <p class="card-text"><%= elem.userName %></p>
+				<p class="card-text">Номер: <%= elem.tel %></p>
 				<a href="#" class="btn btn-primary">Подробнее</a>
 			  </div>
 		

@@ -119,7 +119,7 @@
 		  </div>
 		</div>
 	<!-- Белый прямоугольник -->
-	<div class='rectale' style='position: absolute; background-color: rgba(255,255,255, 0.7); width: 100%; height: 60%; margin: 5% 0;'>
+	<div class='rectale' style='position: absolute; background-color: rgba(255,255,255, 0.7); width: 100%; height: 60%; margin: 1% 0;'>
 		<p style='margin: -5px 45%; font-size: 30px; position: absolute;'>Объявления</p>
 		<div class="insert">
 		<% post.forEach(elem => { %>
@@ -130,6 +130,8 @@
 			<div class="card-body">
 				<h5 class="card-title"><%=elem.postName%></h5>
 				<p class="card-text"><%= elem.comment%></p>
+				<p class="card-text"><%= elem.userName %></p>
+				<p class="card-text">Номер: <%= elem.tel %></p>
 				<a href="#" class="btn btn-primary">Подробнее</a>
 			  </div>
 		

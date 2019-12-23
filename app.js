@@ -123,8 +123,7 @@ app.post('/cab', function(req, res){
     post.push({postName:postName, comment:comment, userName:userName, tel:tel})
     fs.writeFile(postData, JSON.stringify(post), err => {
         console.log(err)
-     })
-    res.render('/cab')
+     }) 
 })
 
 app.listen(PORT)
